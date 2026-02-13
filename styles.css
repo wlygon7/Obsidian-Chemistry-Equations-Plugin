@@ -1,0 +1,150 @@
+/* Chemistry block container */
+.chem-block {
+  background-color: var(--background-secondary);
+  border-left: 4px solid var(--interactive-accent);
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+/* Individual result */
+.chem-result {
+  margin: 0.5em 0;
+  padding: 0.5em;
+  background-color: var(--background-primary);
+  border-radius: 3px;
+}
+
+.chem-result strong {
+  color: var(--interactive-accent);
+}
+
+.chem-result-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3em;
+  flex-wrap: wrap;
+}
+
+/* Element breakdown */
+.chem-breakdown {
+  margin-left: 1em;
+  margin-top: 0.5em;
+  font-size: 0.9em;
+  color: var(--text-muted);
+}
+
+.chem-breakdown div {
+  margin: 0.2em 0;
+}
+
+/* Error messages */
+.chem-error {
+  color: var(--text-error);
+  padding: 0.5em;
+  background-color: var(--background-modifier-error);
+  border-radius: 3px;
+}
+
+/* Info text */
+.chem-info {
+  color: var(--text-muted);
+  font-size: 0.9em;
+  margin-top: 0.3em;
+  font-style: italic;
+}
+
+/* Formula rendering */
+.chem-formula {
+  font-family: 'Times New Roman', 'Georgia', serif;
+  font-size: 1.1em;
+  letter-spacing: 0.02em;
+}
+
+.chem-coefficient {
+  margin-right: 0.1em;
+}
+
+.chem-formula sub {
+  font-size: 0.75em;
+  vertical-align: sub;
+}
+
+.chem-formula sup,
+.chem-charge {
+  font-size: 0.75em;
+  vertical-align: super;
+}
+
+/* Equation rendering */
+.chem-equation {
+  padding: 0.5em 0;
+  font-size: 1.1em;
+  line-height: 1.8;
+}
+
+.chem-arrow {
+  font-size: 1.3em;
+  margin: 0 0.3em;
+  color: var(--text-normal);
+  vertical-align: middle;
+}
+
+.chem-plus {
+  margin: 0 0.2em;
+  color: var(--text-normal);
+}
+
+.chem-state {
+  font-size: 0.8em;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-left: 0.1em;
+}
+
+.chem-hydrate-dot {
+  margin: 0 0.2em;
+}
+
+/* Inline chemistry */
+.chem-inline {
+  font-family: 'Times New Roman', 'Georgia', serif;
+  font-size: 1.05em;
+}
+
+.chem-inline sub {
+  font-size: 0.75em;
+  vertical-align: sub;
+}
+
+.chem-inline sup {
+  font-size: 0.75em;
+  vertical-align: super;
+}
+
+/* Labels */
+.chem-label {
+  font-weight: bold;
+  margin-bottom: 0.3em;
+  color: var(--text-normal);
+}
+
+/* Stoichiometry steps */
+.chem-steps {
+  margin-left: 1em;
+  margin-top: 0.5em;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+.chem-steps div {
+  margin: 0.2em 0;
+}
+
+.chem-answer {
+  font-weight: bold;
+  color: var(--interactive-accent);
+  margin-top: 0.5em;
+  padding-top: 0.3em;
+  border-top: 1px solid var(--background-modifier-border);
+}
