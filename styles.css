@@ -148,3 +148,81 @@
   padding-top: 0.3em;
   border-top: 1px solid var(--background-modifier-border);
 }
+
+/* Data tables (composition, limiting reagent, etc.) */
+.chem-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5em 0;
+  font-size: 0.9em;
+}
+
+.chem-table th {
+  background-color: var(--background-modifier-border);
+  padding: 0.3em 0.6em;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid var(--interactive-accent);
+}
+
+.chem-table td {
+  padding: 0.25em 0.6em;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.chem-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Highlighted row for limiting reagent */
+.chem-limiting-row {
+  background-color: var(--background-modifier-hover);
+  font-weight: bold;
+  border-left: 3px solid var(--interactive-accent);
+}
+
+/* Electron configuration display */
+.chem-config-display {
+  font-family: 'Times New Roman', 'Georgia', serif;
+  font-size: 1.1em;
+  line-height: 2.2;
+  margin: 0.5em 0;
+}
+
+.chem-config-subshell {
+  margin-right: 0.35em;
+}
+
+/* Oxidation states grid */
+.chem-oxidation-grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 0.25em 0.8em;
+  margin: 0.5em 0;
+  font-size: 0.95em;
+}
+
+.chem-oxidation-header {
+  font-weight: bold;
+  color: var(--text-muted);
+}
+
+.chem-oxidation-state {
+  display: inline-block;
+  font-weight: bold;
+  color: var(--interactive-accent);
+}
+
+/* Percent bar for composition */
+.chem-percent-bar-container {
+  background-color: var(--background-modifier-border);
+  border-radius: 3px;
+  height: 6px;
+  margin-top: 2px;
+}
+
+.chem-percent-bar {
+  background-color: var(--interactive-accent);
+  height: 6px;
+  border-radius: 3px;
+}

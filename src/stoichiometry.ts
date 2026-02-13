@@ -1,32 +1,6 @@
-import { parseEquation, parseFormula, getMolarMass, ParsedFormula } from './parser';
+import { parseEquation, getMolarMass, findCompound } from './parser';
 import { renderEquation } from './renderer';
 import type ChemistryPlugin from './main';
-
-// Find a compound in the equation by matching its formula text
-function findCompound(
-  compounds: ParsedFormula[],
-  formulaStr: string
-): ParsedFormula | null {
-  const target = parseFormula(formulaStr);
-
-  for (const compound of compounds) {
-    // Compare element maps (ignoring coefficients)
-    const aKeys = Object.keys(compound.elements).sort();
-    const bKeys = Object.keys(target.elements).sort();
-
-    if (aKeys.length !== bKeys.length) continue;
-
-    let match = true;
-    for (let i = 0; i < aKeys.length; i++) {
-      if (aKeys[i] !== bKeys[i] || compound.elements[aKeys[i]] !== target.elements[bKeys[i]]) {
-        match = false;
-        break;
-      }
-    }
-    if (match) return compound;
-  }
-  return null;
-}
 
 export function solveAndDisplayStoichiometry(
   plugin: ChemistryPlugin,

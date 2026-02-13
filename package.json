@@ -1,6 +1,6 @@
 {
   "name": "obsidian-chemistry",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Chemistry calculator and renderer for Obsidian",
   "main": "main.js",
   "type": "module",

@@ -141,6 +141,31 @@ export function parseEquation(input: string): ParsedEquation {
   return { reactants, products, arrowType, original };
 }
 
+// Find a compound in a list by matching its element composition
+export function findCompound(
+  compounds: ParsedFormula[],
+  formulaStr: string
+): ParsedFormula | null {
+  const target = parseFormula(formulaStr);
+
+  for (const compound of compounds) {
+    const aKeys = Object.keys(compound.elements).sort();
+    const bKeys = Object.keys(target.elements).sort();
+
+    if (aKeys.length !== bKeys.length) continue;
+
+    let match = true;
+    for (let i = 0; i < aKeys.length; i++) {
+      if (aKeys[i] !== bKeys[i] || compound.elements[aKeys[i]] !== target.elements[bKeys[i]]) {
+        match = false;
+        break;
+      }
+    }
+    if (match) return compound;
+  }
+  return null;
+}
+
 // Calculate molar mass from parsed elements
 export function getMolarMass(elements: Record<string, number>): number {
   let mass = 0;

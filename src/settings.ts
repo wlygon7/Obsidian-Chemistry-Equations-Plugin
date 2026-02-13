@@ -6,6 +6,8 @@ export interface ChemistryPluginSettings {
   enableInlineRendering: boolean;
   showElementBreakdown: boolean;
   renderArrows: boolean;
+  showCalculationSteps: boolean;
+  showNobleGasCore: boolean;
 }
 
 export const DEFAULT_SETTINGS: ChemistryPluginSettings = {
@@ -13,6 +15,8 @@ export const DEFAULT_SETTINGS: ChemistryPluginSettings = {
   enableInlineRendering: true,
   showElementBreakdown: true,
   renderArrows: true,
+  showCalculationSteps: true,
+  showNobleGasCore: true,
 };
 
 export class ChemistrySettingTab extends PluginSettingTab {
@@ -71,6 +75,28 @@ export class ChemistrySettingTab extends PluginSettingTab {
         .setValue(this.plugin.settings.renderArrows)
         .onChange(async (value) => {
           this.plugin.settings.renderArrows = value;
+          await this.plugin.saveSettings();
+        })
+      );
+
+    new Setting(containerEl)
+      .setName('Show calculation steps')
+      .setDesc('Display intermediate steps in calculations (stoichiometry, gas law, pH, etc.)')
+      .addToggle(toggle => toggle
+        .setValue(this.plugin.settings.showCalculationSteps)
+        .onChange(async (value) => {
+          this.plugin.settings.showCalculationSteps = value;
+          await this.plugin.saveSettings();
+        })
+      );
+
+    new Setting(containerEl)
+      .setName('Noble gas core abbreviation')
+      .setDesc('Use [Ar], [Kr], etc. in electron configurations')
+      .addToggle(toggle => toggle
+        .setValue(this.plugin.settings.showNobleGasCore)
+        .onChange(async (value) => {
+          this.plugin.settings.showNobleGasCore = value;
           await this.plugin.saveSettings();
         })
       );

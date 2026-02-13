@@ -3,7 +3,7 @@
   "name": "Chemistry Block",
   "version": "1.0.0",
   "minAppVersion": "0.15.0",
-  "description": "Perform chemistry calculations in Obsidian blocks",
+  "description": "Render chemistry notation and perform calculations — molar mass, equation balancing, stoichiometry, gas laws, pH, electron configuration, and more",
   "author": "wlygon7",
   "authorUrl": "https://github.com/wlygon7",
   "isDesktopOnly": false
