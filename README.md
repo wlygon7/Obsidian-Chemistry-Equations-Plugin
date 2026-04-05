@@ -4,6 +4,8 @@ An [Obsidian](https://obsidian.md) plugin that renders chemical formulas, balanc
 
 Think of it like `$$` math blocks, but for chemistry.
 
+(This was vibe coded, so don't think about the code too hard)
+
 ## Features
 
 ### Rendering
