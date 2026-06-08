@@ -1,5 +1,6 @@
+import { finishRenderMath } from 'obsidian';
 import type ChemistryPlugin from './main';
-import { renderFormula } from './renderer';
+import { renderFormulaKatex } from './renderer';
 
 export function registerInlineProcessor(plugin: ChemistryPlugin): void {
   plugin.registerMarkdownPostProcessor((el: HTMLElement) => {
@@ -18,11 +19,13 @@ export function registerInlineProcessor(plugin: ChemistryPlugin): void {
       wrapper.className = 'chem-inline';
 
       try {
-        renderFormula(chemText, wrapper);
+        renderFormulaKatex(chemText, wrapper, false);
         codeEl.replaceWith(wrapper);
       } catch (err) {
         // On error, leave the original <code> element unchanged
       }
     });
+    // Flush all inline KaTeX renders in one batch
+    finishRenderMath();
   });
 }

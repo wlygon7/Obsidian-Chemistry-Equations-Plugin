@@ -1,5 +1,5 @@
 import { parseEquation } from './parser';
-import { renderEquation } from './renderer';
+import { renderEquationKatex } from './renderer';
 import type ChemistryPlugin from './main';
 
 export function equilibriumAndDisplay(
@@ -81,7 +81,7 @@ export function equilibriumAndDisplay(
     // Display
     const resultDiv = container.createDiv({ cls: 'chem-result' });
     resultDiv.createEl('div', { cls: 'chem-label', text: 'Equilibrium Constant:' });
-    renderEquation(equationStr, resultDiv);
+    renderEquationKatex(equationStr, resultDiv, true);
 
     if (plugin.settings.showCalculationSteps) {
       const stepsDiv = resultDiv.createDiv({ cls: 'chem-steps' });

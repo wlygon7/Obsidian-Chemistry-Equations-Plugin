@@ -1,6 +1,6 @@
 import { getMolarMass } from './parser';
 import { ELEMENT_MASSES } from './periodic-table';
-import { renderFormula } from './renderer';
+import { renderFormulaKatex } from './renderer';
 import type ChemistryPlugin from './main';
 
 interface ElementPercent {
@@ -107,7 +107,7 @@ export function empiricalAndDisplay(
 
     const answerDiv = resultDiv.createDiv({ cls: 'chem-answer' });
     answerDiv.createSpan({ text: 'Empirical formula: ' });
-    renderFormula(formulaStr, answerDiv);
+    renderFormulaKatex(formulaStr, answerDiv, false);
 
     const mass = getMolarMass(elements);
     resultDiv.createDiv({
@@ -163,7 +163,7 @@ export function molecularAndDisplay(
 
       const empLine = stepsDiv.createEl('div');
       empLine.createSpan({ text: 'Empirical formula: ' });
-      renderFormula(empiricalStr, empLine);
+      renderFormulaKatex(empiricalStr, empLine, false);
 
       stepsDiv.createEl('div', {
         text: `Empirical formula mass: ${empiricalMass.toFixed(dp)} g/mol`
@@ -175,7 +175,7 @@ export function molecularAndDisplay(
 
     const answerDiv = resultDiv.createDiv({ cls: 'chem-answer' });
     answerDiv.createSpan({ text: 'Molecular formula: ' });
-    renderFormula(molecularStr, answerDiv);
+    renderFormulaKatex(molecularStr, answerDiv, false);
 
     resultDiv.createDiv({
       cls: 'chem-info',

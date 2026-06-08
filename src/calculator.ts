@@ -1,6 +1,6 @@
 import { parseFormula, getMolarMass } from './parser';
 import { ELEMENT_MASSES } from './periodic-table';
-import { renderFormula } from './renderer';
+import { renderFormulaKatex } from './renderer';
 import { AVOGADRO, MOLAR_VOLUME_STP } from './constants';
 import type ChemistryPlugin from './main';
 
@@ -17,7 +17,7 @@ export function calculateAndDisplayMolarMass(
     const resultDiv = container.createDiv({ cls: 'chem-result' });
 
     const headerDiv = resultDiv.createDiv({ cls: 'chem-result-header' });
-    renderFormula(formula, headerDiv);
+    renderFormulaKatex(formula, headerDiv, false);
     headerDiv.createSpan({ text: ` \u2192 Molar Mass: ${mass.toFixed(dp)} g/mol` });
 
     if (plugin.settings.showElementBreakdown) {

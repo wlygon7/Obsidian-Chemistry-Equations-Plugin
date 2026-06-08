@@ -1,5 +1,5 @@
 import { parseEquation, getMolarMass, findCompound } from './parser';
-import { renderEquation } from './renderer';
+import { renderEquationKatex } from './renderer';
 import type ChemistryPlugin from './main';
 
 export function percentYieldAndDisplay(
@@ -98,7 +98,7 @@ export function percentYieldAndDisplay(
     // Display
     const resultDiv = container.createDiv({ cls: 'chem-result' });
     resultDiv.createEl('div', { cls: 'chem-label', text: 'Percent Yield:' });
-    renderEquation(equationStr, resultDiv);
+    renderEquationKatex(equationStr, resultDiv, true);
 
     if (plugin.settings.showCalculationSteps) {
       const stepsDiv = resultDiv.createDiv({ cls: 'chem-steps' });
