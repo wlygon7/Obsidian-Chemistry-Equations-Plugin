@@ -121,25 +121,25 @@ function equationToLatex(text: string): string {
   return `${reactants} ${arrowLatex} ${products}`;
 }
 
-// Render a chemical formula using Obsidian's KaTeX renderer
+// Render a chemical formula using Obsidian's KaTeX renderer.
+// Caller is responsible for calling finishRenderMath() after all renders are done.
 export function renderFormulaKatex(text: string, container: HTMLElement, displayMode = false): void {
   try {
     const latex = formulaToLatex(text.trim());
     const el = renderMath(latex, displayMode);
     container.appendChild(el);
-    finishRenderMath();
   } catch {
     renderFormula(text, container);
   }
 }
 
-// Render a full equation using Obsidian's KaTeX renderer (display mode by default)
+// Render a full equation using Obsidian's KaTeX renderer (display mode by default).
+// Caller is responsible for calling finishRenderMath() after all renders are done.
 export function renderEquationKatex(text: string, container: HTMLElement, displayMode = true): void {
   try {
     const latex = equationToLatex(text.trim());
     const el = renderMath(latex, displayMode);
     container.appendChild(el);
-    finishRenderMath();
   } catch {
     renderEquation(text, container);
   }

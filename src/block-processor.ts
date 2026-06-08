@@ -1,4 +1,4 @@
-import { MarkdownPostProcessorContext } from 'obsidian';
+import { MarkdownPostProcessorContext, finishRenderMath } from 'obsidian';
 import type ChemistryPlugin from './main';
 import { renderEquationKatex, renderFormulaKatex } from './renderer';
 import { calculateAndDisplayMolarMass, convertAndDisplay } from './calculator';
@@ -16,12 +16,12 @@ import { oxidationAndDisplay } from './oxidation';
 import { thermochemAndDisplay } from './thermochem';
 import { equilibriumAndDisplay } from './equilibrium';
 
-export function processChemBlock(
+export async function processChemBlock(
   plugin: ChemistryPlugin,
   source: string,
   el: HTMLElement,
   ctx: MarkdownPostProcessorContext
-): void {
+): Promise<void> {
   const lines = source.trim().split('\n');
   const container = el.createDiv({ cls: 'chem-block' });
 
@@ -84,4 +84,6 @@ export function processChemBlock(
       });
     }
   }
+  // Flush all KaTeX renders in one batch rather than per-expression
+  await finishRenderMath();
 }

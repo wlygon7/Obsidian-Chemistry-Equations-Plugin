@@ -13,7 +13,7 @@ export default class ChemistryPlugin extends Plugin {
     this.addSettingTab(new ChemistrySettingTab(this.app, this));
 
     this.registerMarkdownCodeBlockProcessor('chem', (source, el, ctx) => {
-      processChemBlock(this, source, el, ctx);
+      return processChemBlock(this, source, el, ctx);
     });
 
     registerInlineProcessor(this);

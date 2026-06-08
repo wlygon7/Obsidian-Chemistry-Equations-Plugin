@@ -1,3 +1,4 @@
+import { finishRenderMath } from 'obsidian';
 import type ChemistryPlugin from './main';
 import { renderFormulaKatex } from './renderer';
 
@@ -24,5 +25,7 @@ export function registerInlineProcessor(plugin: ChemistryPlugin): void {
         // On error, leave the original <code> element unchanged
       }
     });
+    // Flush all inline KaTeX renders in one batch
+    finishRenderMath();
   });
 }
