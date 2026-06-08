@@ -1,6 +1,6 @@
 import { parseFormula, getMolarMass } from './parser';
 import { ELEMENT_MASSES } from './periodic-table';
-import { renderFormula } from './renderer';
+import { renderFormulaKatex } from './renderer';
 import type ChemistryPlugin from './main';
 
 export function compositionAndDisplay(
@@ -17,7 +17,7 @@ export function compositionAndDisplay(
     resultDiv.createEl('div', { cls: 'chem-label', text: 'Percent Composition:' });
 
     const headerDiv = resultDiv.createDiv({ cls: 'chem-result-header' });
-    renderFormula(formula, headerDiv);
+    renderFormulaKatex(formula, headerDiv, false);
     headerDiv.createSpan({ text: ` \u2014 Molar mass: ${totalMass.toFixed(dp)} g/mol` });
 
     const table = resultDiv.createEl('table', { cls: 'chem-table' });

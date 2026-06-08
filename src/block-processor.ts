@@ -1,6 +1,6 @@
 import { MarkdownPostProcessorContext } from 'obsidian';
 import type ChemistryPlugin from './main';
-import { renderEquation, renderFormula } from './renderer';
+import { renderEquationKatex, renderFormulaKatex } from './renderer';
 import { calculateAndDisplayMolarMass, convertAndDisplay } from './calculator';
 import { balanceAndDisplay } from './balancer';
 import { solveAndDisplayStoichiometry } from './stoichiometry';
@@ -24,6 +24,7 @@ export function processChemBlock(
 ): void {
   const lines = source.trim().split('\n');
   const container = el.createDiv({ cls: 'chem-block' });
+
 
   for (const line of lines) {
     const trimmed = line.trim();
@@ -68,11 +69,12 @@ export function processChemBlock(
       } else if (trimmed.startsWith('Keq:')) {
         equilibriumAndDisplay(plugin, trimmed.substring(4).trim(), container);
       } else {
-        // Default: render beautifully
+        // Default: render as centered display equation (like LaTeX $$...$$)
+        const displayDiv = container.createDiv({ cls: 'chem-equation-display' });
         if (trimmed.includes('->') || trimmed.includes('<->') || trimmed.includes('<=>')) {
-          renderEquation(trimmed, container);
+          renderEquationKatex(trimmed, displayDiv, true);
         } else {
-          renderFormula(trimmed, container);
+          renderFormulaKatex(trimmed, displayDiv, true);
         }
       }
     } catch (err) {

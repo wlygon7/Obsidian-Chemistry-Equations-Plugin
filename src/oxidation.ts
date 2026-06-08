@@ -1,5 +1,5 @@
 import { parseFormula } from './parser';
-import { renderFormula } from './renderer';
+import { renderFormulaKatex } from './renderer';
 import type ChemistryPlugin from './main';
 
 // Elements with fixed oxidation states in compounds
@@ -44,7 +44,7 @@ export function oxidationAndDisplay(
       const resultDiv = container.createDiv({ cls: 'chem-result' });
       resultDiv.createEl('div', { cls: 'chem-label', text: 'Oxidation States:' });
       const headerDiv = resultDiv.createDiv({ cls: 'chem-result-header' });
-      renderFormula(input, headerDiv);
+      renderFormulaKatex(input, headerDiv, false);
       resultDiv.createDiv({
         cls: 'chem-answer',
         text: `${el}: 0 (pure element)`
@@ -101,7 +101,7 @@ export function oxidationAndDisplay(
       // Multiple unknowns: can't determine individually
       const resultDiv = container.createDiv({ cls: 'chem-result' });
       resultDiv.createEl('div', { cls: 'chem-label', text: 'Oxidation States:' });
-      renderFormula(input, resultDiv);
+      renderFormulaKatex(input, resultDiv, false);
 
       for (const [el, state] of Object.entries(assigned)) {
         resultDiv.createDiv({ text: `${el}: ${state > 0 ? '+' : ''}${state}` });
@@ -118,7 +118,7 @@ export function oxidationAndDisplay(
     resultDiv.createEl('div', { cls: 'chem-label', text: 'Oxidation States:' });
 
     const headerDiv = resultDiv.createDiv({ cls: 'chem-result-header' });
-    renderFormula(input, headerDiv);
+    renderFormulaKatex(input, headerDiv, false);
     if (netCharge !== 0) {
       headerDiv.createSpan({ text: ` (net charge: ${netCharge > 0 ? '+' : ''}${netCharge})` });
     }

@@ -1,172 +1,266 @@
-/* Chemistry block container */
+/* ============================================================
+   Chemistry Plugin — Visual Design System
+   ============================================================ */
+
+/* Outer block wrapper — minimal, just provides spacing */
 .chem-block {
-  background-color: var(--background-secondary);
-  border-left: 4px solid var(--interactive-accent);
-  padding: 1em;
-  margin: 1em 0;
-  border-radius: 4px;
+  margin: 1.2em 0;
 }
 
-/* Individual result */
+/* ============================================================
+   Pure equation display — centered, no card box
+   Mirrors the look of Obsidian's own $$ math blocks
+   ============================================================ */
+
+.chem-equation-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em 1em;
+  overflow-x: auto;
+}
+
+/* Scale up KaTeX slightly in standalone display mode */
+.chem-equation-display .katex {
+  font-size: 1.21em;
+}
+
+.chem-equation-display .katex-display {
+  margin: 0;
+}
+
+/* ============================================================
+   Calculation result cards
+   Callout-style with a labeled header strip
+   ============================================================ */
+
 .chem-result {
-  margin: 0.5em 0;
-  padding: 0.5em;
-  background-color: var(--background-primary);
-  border-radius: 3px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 0.55em 0;
+  background: var(--background-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
 }
 
-.chem-result strong {
+/* Card header strip — accent color label */
+.chem-label {
+  background: var(--background-secondary);
+  border-bottom: 2px solid var(--interactive-accent);
   color: var(--interactive-accent);
+  padding: 0.38em 0.85em;
+  font-size: 0.71em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
+/* Formula + result text inline in card header */
 .chem-result-header {
   display: flex;
-  align-items: baseline;
-  gap: 0.3em;
+  align-items: center;
   flex-wrap: wrap;
+  gap: 0.35em;
+  padding: 0.6em 0.85em 0;
+  font-size: 1.0em;
 }
 
-/* Element breakdown */
-.chem-breakdown {
-  margin-left: 1em;
-  margin-top: 0.5em;
-  font-size: 0.9em;
-  color: var(--text-muted);
+/* Keep inline KaTeX inside headers at body text size */
+.chem-result-header .katex {
+  font-size: 1em;
 }
 
-.chem-breakdown div {
-  margin: 0.2em 0;
+/* KaTeX display (block) equations inside cards */
+.chem-result .katex-display {
+  padding: 0 0.85em;
+  margin: 0.4em 0;
 }
 
-/* Error messages */
-.chem-error {
-  color: var(--text-error);
-  padding: 0.5em;
-  background-color: var(--background-modifier-error);
-  border-radius: 3px;
-}
+/* ============================================================
+   DOM fallback renderer — formula & equation
+   Uses KaTeX fonts since Obsidian already loads them
+   ============================================================ */
 
-/* Info text */
-.chem-info {
-  color: var(--text-muted);
-  font-size: 0.9em;
-  margin-top: 0.3em;
-  font-style: italic;
-}
-
-/* Formula rendering */
 .chem-formula {
-  font-family: 'Times New Roman', 'Georgia', serif;
+  font-family: 'KaTeX_Main', 'Computer Modern', 'Times New Roman', Georgia, serif;
   font-size: 1.1em;
   letter-spacing: 0.02em;
 }
 
 .chem-coefficient {
-  margin-right: 0.1em;
+  margin-right: 0.05em;
+  color: var(--text-muted);
 }
 
-.chem-formula sub {
-  font-size: 0.75em;
+.chem-formula sub,
+.chem-inline sub {
+  font-size: 0.72em;
   vertical-align: sub;
+  line-height: 0;
 }
 
 .chem-formula sup,
-.chem-charge {
-  font-size: 0.75em;
+.chem-charge,
+.chem-inline sup {
+  font-size: 0.72em;
   vertical-align: super;
+  line-height: 0;
 }
 
-/* Equation rendering */
+/* Equation container (DOM fallback) */
 .chem-equation {
-  padding: 0.5em 0;
+  font-family: 'KaTeX_Main', 'Computer Modern', 'Times New Roman', Georgia, serif;
   font-size: 1.1em;
-  line-height: 1.8;
+  line-height: 2;
+  padding: 0.3em 0.85em;
 }
 
 .chem-arrow {
-  font-size: 1.3em;
-  margin: 0 0.3em;
-  color: var(--text-normal);
+  font-size: 1.15em;
+  margin: 0 0.4em;
   vertical-align: middle;
+  color: var(--text-normal);
 }
 
 .chem-plus {
   margin: 0 0.2em;
-  color: var(--text-normal);
+  color: var(--text-muted);
 }
 
 .chem-state {
   font-size: 0.8em;
   font-style: italic;
   color: var(--text-muted);
-  margin-left: 0.1em;
+  margin-left: 0.05em;
 }
 
 .chem-hydrate-dot {
-  margin: 0 0.2em;
+  margin: 0 0.15em;
+  color: var(--text-muted);
 }
 
-/* Inline chemistry */
+/* Inline chemistry wrapper */
 .chem-inline {
-  font-family: 'Times New Roman', 'Georgia', serif;
+  font-family: 'KaTeX_Main', 'Computer Modern', 'Times New Roman', Georgia, serif;
   font-size: 1.05em;
 }
 
-.chem-inline sub {
-  font-size: 0.75em;
-  vertical-align: sub;
-}
+/* ============================================================
+   Element group colors
+   Light and dark theme variants
+   ============================================================ */
 
-.chem-inline sup {
-  font-size: 0.75em;
-  vertical-align: super;
-}
+/* Light theme */
+.theme-light .chem-el-nonmetal   { color: #0070c0; }
+.theme-light .chem-el-carbon     { color: #2a2a2a; }
+.theme-light .chem-el-halogen    { color: #b85000; }
+.theme-light .chem-el-noble      { color: #7b2fa0; }
+.theme-light .chem-el-alkali     { color: #c0392b; }
+.theme-light .chem-el-alkaline   { color: #1e8449; }
+.theme-light .chem-el-transition { color: #8b5e00; }
+.theme-light .chem-el-metalloid  { color: #007070; }
+.theme-light .chem-el-post       { color: #4a5a6a; }
 
-/* Labels */
-.chem-label {
-  font-weight: bold;
-  margin-bottom: 0.3em;
-  color: var(--text-normal);
-}
+/* Dark theme */
+.theme-dark .chem-el-nonmetal    { color: #60b8f0; }
+.theme-dark .chem-el-carbon      { color: #a8b8c8; }
+.theme-dark .chem-el-halogen     { color: #f0a060; }
+.theme-dark .chem-el-noble       { color: #c080e0; }
+.theme-dark .chem-el-alkali      { color: #e07878; }
+.theme-dark .chem-el-alkaline    { color: #60c880; }
+.theme-dark .chem-el-transition  { color: #d4a840; }
+.theme-dark .chem-el-metalloid   { color: #40c0b0; }
+.theme-dark .chem-el-post        { color: #90a4b8; }
 
-/* Stoichiometry steps */
+/* ============================================================
+   Calculation steps, breakdown, answer
+   ============================================================ */
+
 .chem-steps {
-  margin-left: 1em;
-  margin-top: 0.5em;
-  font-size: 0.95em;
-  line-height: 1.6;
-}
-
-.chem-steps div {
-  margin: 0.2em 0;
-}
-
-.chem-answer {
-  font-weight: bold;
-  color: var(--interactive-accent);
-  margin-top: 0.5em;
-  padding-top: 0.3em;
+  padding: 0.45em 0.85em;
+  font-size: 0.89em;
+  line-height: 1.75;
   border-top: 1px solid var(--background-modifier-border);
 }
 
-/* Data tables (composition, limiting reagent, etc.) */
+.chem-steps > div {
+  padding-left: 0.8em;
+  border-left: 2px solid var(--background-modifier-border);
+  margin: 0.18em 0;
+}
+
+/* Answer chips inside steps should not have the left border */
+.chem-steps > .chem-answer {
+  border-left: none;
+  padding-left: 0;
+}
+
+.chem-breakdown {
+  padding: 0.35em 0.85em;
+  font-size: 0.88em;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* Answer display — highlighted final result */
+.chem-answer {
+  display: block;
+  font-weight: 700;
+  color: var(--interactive-accent);
+  padding: 0.45em 0.85em 0.6em;
+  font-size: 0.95em;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+/* Answer inside steps inherits the step padding, not the card padding */
+.chem-steps > .chem-answer {
+  padding: 0.3em 0;
+  margin-top: 0.35em;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+/* Info / footnote text */
+.chem-info {
+  color: var(--text-muted);
+  font-size: 0.82em;
+  padding: 0.2em 0.85em 0.55em;
+  font-style: italic;
+}
+
+/* Error messages */
+.chem-error {
+  color: var(--text-error);
+  padding: 0.55em 0.85em;
+  background: var(--background-modifier-error);
+  border-radius: 6px;
+  font-size: 0.9em;
+  margin: 0.4em 0;
+  border-left: 3px solid var(--text-error);
+}
+
+/* ============================================================
+   Data tables (composition, limiting reagent, etc.)
+   ============================================================ */
+
 .chem-table {
   width: 100%;
   border-collapse: collapse;
-  margin: 0.5em 0;
-  font-size: 0.9em;
+  margin: 0.4em 0;
+  font-size: 0.88em;
 }
 
 .chem-table th {
-  background-color: var(--background-modifier-border);
-  padding: 0.3em 0.6em;
+  background: var(--background-secondary);
+  padding: 0.35em 0.7em;
   text-align: left;
   font-weight: 600;
   border-bottom: 2px solid var(--interactive-accent);
+  font-size: 0.88em;
+  letter-spacing: 0.04em;
 }
 
 .chem-table td {
-  padding: 0.25em 0.6em;
+  padding: 0.28em 0.7em;
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
@@ -174,55 +268,77 @@
   border-bottom: none;
 }
 
-/* Highlighted row for limiting reagent */
-.chem-limiting-row {
-  background-color: var(--background-modifier-hover);
-  font-weight: bold;
-  border-left: 3px solid var(--interactive-accent);
+.chem-table tbody tr:hover td {
+  background: var(--background-modifier-hover);
 }
 
-/* Electron configuration display */
+/* Limiting reagent highlighted row */
+.chem-limiting-row {
+  background: var(--background-modifier-hover);
+  font-weight: 600;
+}
+
+.chem-limiting-row td:first-child {
+  border-left: 3px solid var(--interactive-accent);
+  padding-left: 0.5em;
+}
+
+/* ============================================================
+   Electron configuration display
+   ============================================================ */
+
 .chem-config-display {
-  font-family: 'Times New Roman', 'Georgia', serif;
+  font-family: 'KaTeX_Main', 'Computer Modern', 'Times New Roman', Georgia, serif;
   font-size: 1.1em;
   line-height: 2.2;
-  margin: 0.5em 0;
+  padding: 0.4em 0.85em;
 }
 
 .chem-config-subshell {
-  margin-right: 0.35em;
+  margin-right: 0.3em;
 }
 
-/* Oxidation states grid */
+/* ============================================================
+   Oxidation states grid
+   ============================================================ */
+
 .chem-oxidation-grid {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  gap: 0.25em 0.8em;
-  margin: 0.5em 0;
-  font-size: 0.95em;
+  gap: 0.3em 1em;
+  padding: 0.5em 0.85em;
+  font-size: 0.91em;
 }
 
 .chem-oxidation-header {
-  font-weight: bold;
+  font-weight: 700;
   color: var(--text-muted);
+  font-size: 0.83em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding-bottom: 0.25em;
+  border-bottom: 1px solid var(--background-modifier-border);
 }
 
 .chem-oxidation-state {
-  display: inline-block;
-  font-weight: bold;
+  font-weight: 700;
   color: var(--interactive-accent);
 }
 
-/* Percent bar for composition */
+/* ============================================================
+   Percent composition bar
+   ============================================================ */
+
 .chem-percent-bar-container {
-  background-color: var(--background-modifier-border);
-  border-radius: 3px;
-  height: 6px;
-  margin-top: 2px;
+  background: var(--background-modifier-border);
+  border-radius: 4px;
+  height: 5px;
+  margin-top: 3px;
+  overflow: hidden;
 }
 
 .chem-percent-bar {
-  background-color: var(--interactive-accent);
-  height: 6px;
-  border-radius: 3px;
+  background: var(--interactive-accent);
+  height: 5px;
+  border-radius: 4px;
 }

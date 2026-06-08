@@ -1,5 +1,5 @@
 import { parseEquation } from './parser';
-import { renderEquation } from './renderer';
+import { renderEquationKatex } from './renderer';
 import type ChemistryPlugin from './main';
 
 function gcd(a: number, b: number): number {
@@ -164,7 +164,7 @@ export function balanceAndDisplay(
 
     const resultDiv = container.createDiv({ cls: 'chem-result' });
     resultDiv.createEl('div', { cls: 'chem-label', text: 'Balanced Equation:' });
-    renderEquation(balancedStr, resultDiv);
+    renderEquationKatex(balancedStr, resultDiv, true);
     resultDiv.createDiv({
       cls: 'chem-info',
       text: `Original: ${equationStr}`
