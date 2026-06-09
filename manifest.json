@@ -1,6 +1,6 @@
 {
-  "id": "chemistry-calculator",
-  "name": "Chemistry Block",
+  "id": "obsidian chemistry",
+  "name": "ObsidianChemistry",
   "version": "1.0.0",
   "minAppVersion": "0.15.0",
   "description": "Render chemistry notation and perform calculations — molar mass, equation balancing, stoichiometry, gas laws, pH, electron configuration, and more",
