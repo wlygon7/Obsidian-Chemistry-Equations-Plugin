@@ -1,7 +1,7 @@
 {
-  "id": "chemistry_plugin_by_wlygon7",
-  "name": "Obsidian Chemistry",
-  "version": "1.0.1",
+  "id": "chemistry_equations_by_wlygon7",
+  "name": "Chemistry Equations",
+  "version": "1.0.2",
   "minAppVersion": "0.15.0",
   "description": "Render chemistry notation and perform calculations — molar mass, equation balancing, stoichiometry, gas laws, pH, electron configuration, and more",
   "author": "wlygon7",
